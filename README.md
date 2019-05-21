@@ -38,7 +38,8 @@ The application can be run with default settings:
 To do this manually without make:
 
     docker run -it -p 8000:8000 aherrington-plangrid-homework
-    
+
+## Debug Mode 
 To enable the app in debug mode and get debug logs (including requests logs) you can use:
 
     make run-debug
