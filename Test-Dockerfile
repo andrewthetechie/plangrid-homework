@@ -1,0 +1,18 @@
+FROM python:3-slim
+
+LABEL maintainer="andrew@andrewherrington.com"
+LABEL description="Plangrid homework test image"
+
+COPY requirements.txt /requirements.txt
+COPY test-requirements.txt /test-requirements.txt
+
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r /requirements.txt && \
+    pip install --no-cache-dir -r /test-requirements.txt && \
+    rm -f /requirements.txt && \
+    rm -f /test-requirements.txt
+
+COPY *.py /
+COPY templates/ /templates
+
+CMD pytest test_app.py
