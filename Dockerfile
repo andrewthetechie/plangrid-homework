@@ -11,10 +11,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY app.py /app.py
 COPY config.py /config.py
-COPY templates/ /templates
 
-EXPOSE 8000
-ENV PORT 8000
+EXPOSE 80
+ENV PORT 80
 ENV LOGLEVEL INFO
 
 CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:$PORT --workers 2 --log-level $LOGLEVEL app:app"]

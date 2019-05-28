@@ -14,14 +14,17 @@ help: ## This help.
 build: ## Build the container
 	docker build -f Dockerfile -t aherrington-plangrid-homework .
 
+build-nc: ## Build the container with no cache
+	docker build --no-cache -f Dockerfile -t aherrington-plangrid-homework .
+
 build-test: ## Build the test container
 	docker build -f Test-Dockerfile -t aherrington-plangrid-homework-test .
 
 test: build-test ## Build the test container
 	docker run -it aherrington-plangrid-homework-test
 
-run: build ## Build the test container
-	docker run -it -p 8000:8000 aherrington-plangrid-homework
+run: build-nc ## Run the application
+	docker run -itd -p 80:80 aherrington-plangrid-homework
 
-run-debug: build ## Build the test container
+run-debug: build ## Run with debugging on on an alternate port
 	docker run -it -p 8000:8000 --env LOGLEVEL=DEBUG aherrington-plangrid-homework
